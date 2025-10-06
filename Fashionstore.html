@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store Kenya</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+            background: #fef7e6;
+            color: #1a1a1a;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #ff3e7f 0%, #00a86b 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+            animation: pulse 12s infinite;
+            z-index: 0;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.3); opacity: 0.15; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+        header h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        header p {
+            font-size: 1.3rem;
+            margin-top: 0.8rem;
+            font-family: 'Lora', serif;
+            position: relative;
+            z-index: 1;
+        }
+        nav {
+            background: #1a1a1a;
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 2rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff3e7f;
+        }
+        section {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        h2 {
+            font-size: 3.2rem;
+            color: #ff3e7f;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            width: 120px;
+            height: 4px;
+            background: #00a86b;
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
+        }
+        .product-item {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+        }
+        .product-item:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .product-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 4px solid #ff3e7f;
+        }
+        .product-item div {
+            padding: 2.5rem;
+            text-align: center;
+        }
+        .product-item h3 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-family: 'Lora', serif;
+        }
+        .product-item p {
+            font-size: 1.5rem;
+            color: #ff3e7f;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .product-item button {
+            background: #ff3e7f;
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 35px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: background 0.4s ease, transform 0.4s ease;
+        }
+        .product-item button:hover {
+            background: #00a86b;
+            transform: scale(1.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3.5rem;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        th, td {
+            padding: 1.8rem;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        th {
+            background: #ff3e7f;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+        td {
+            font-size: 1.1rem;
+            font-family: 'Lora', serif;
+        }
+        tr:nth-child(even) {
+            background: #fef7e6;
+        }
+        tr:hover {
+            background: #ffe6ec;
+        }
+        #benefits {
+            background: linear-gradient(135deg, #fff 0%, #d4f1e3 100%);
+            border-radius: 25px;
+            padding: 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #benefits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1583394293214-28ded15f1ce0?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        #benefits p {
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            max-width: 1000px;
+            margin: 0 auto;
+            font-family: 'Lora', serif;
+            position: relative;
+            z-index: 1;
+        }
+        #testimonials {
+            background: #fff;
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .testimonial-item {
+            background: #fef7e6;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-item p {
+            font-size: 1.1rem;
+            font-family: 'Lora', serif;
+            color: #1a1a1a;
+        }
+        .testimonial-item h4 {
+            font-size: 1.3rem;
+            color: #ff3e7f;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        #newsletter {
+            background: #00a86b;
+            color: white;
+            padding: 3rem;
+            text-align: center;
+            border-radius: 20px;
+        }
+        #newsletter input {
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 1rem;
+            margin-right: 1rem;
+        }
+        #newsletter button {
+            background: #ff3e7f;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        #newsletter button:hover {
+            background: #1a1a1a;
+        }
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            font-family: 'Lora', serif;
+        }
+        footer p {
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 3rem;
+            }
+            header p {
+                font-size: 1.1rem;
+            }
+            h2 {
+                font-size: 2.5rem;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            .product-item img {
+                height: 320px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 0.8rem 0;
+            }
+            #newsletter input {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            .product-item img {
+                height: 260px;
+            }
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&Lora:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Fashion Store Kenya</h1>
+        <p>Style Inspired by Kenyan Vibrance</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#products">Shop</a></li>
+            <li><a href="#sales">Sales</a></li>
+            <li><a href="#benefits">Why Us</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+    </nav>
+
+    <section id="products">
+        <h2>Explore Kenyan-Inspired Fashion</h2>
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="image1.jpg" alt="Ankara Print Dress">
+                <div>
+                    <h3>Ankara Print Dress</h3>
+                    <p>KSH 6,500</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="image2.jpg" alt="Maasai Shuka Shirt">
+                <div>
+                    <h3>Maasai Shuka Shirt</h3>
+                    <p>KSH 5,200</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+              <div class="product-item">
+                <img src="image3.jpg" alt="Kitenge trousers">
+                <div>
+                    <h3>Kitenge trousers</h3>
+                    <p>KSH 5,200</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="image4.jpg" alt="Leather Safari Boots">
+                <div>
+                    <h3>Leather Safari Boots</h3>
+                    <p>KSH 9,000</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sales">
+        <h2>Upcoming M-Pesa Exclusive Offers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sale Event</th>
+                    <th>Dates</th>
+                    <th>Discount</th>
+                    <th>Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jambo Halloween Sale</td>
+                    <td>October 25-31, 2025</td>
+                    <td>Up to 40%</td>
+                    <td>Ankara Dresses & Accessories</td>
+                </tr>
+                <tr>
+                    <td>Jamhuri Day Bonanza</td>
+                    <td>December 10-12, 2025</td>
+                    <td>50% Off</td>
+                    <td>All Apparel</td>
+                </tr>
+                <tr>
+                    <td>Christmas Safari Deal</td>
+                    <td>December 20-25, 2025</td>
+                    <td>30% + Free Beaded Bracelet</td>
+                    <td>Shoes & Shirts</td>
+                </tr>
+                <tr>
+                    <td>New Year M-Pesa Madness</td>
+                    <td>January 1-10, 2026</td>
+                    <td>Up to 60%</td>
+                    <td>Entire Store</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="benefits">
+        <h2>Why Shop at Fashion Store Kenya?</h2>
+        <p>Embrace the spirit of Kenya with Fashion Store Kenya, where vibrant designs meet world-class quality. Our collections feature authentic Ankara prints, Maasai-inspired patterns, and sustainable materials sourced locally. Enjoy seamless M-Pesa payments, free delivery across Nairobi, Mombasa, and Kisumu on orders over KSH 5,000, and a 30-day return policy. Join our community of style enthusiasts and experience personalized customer care inspired by Kenyan hospitality.</p>
+    </section>
+
+    <section id="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-item">
+                <p>"The Ankara dress I bought is stunning! It’s perfect for Nairobi events, and the M-Pesa payment was so convenient."</p>
+                <h4>Wanjiku M., Nairobi</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"I love the Maasai Shuka shirt—it’s a bold statement piece. Delivery to Mombasa was super fast!"</p>
+                <h4>Ahmed K., Mombasa</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"The quality of the Kitenge trousers is unmatched. Fashion Store Kenya truly celebrates our culture."</p>
+                <h4>Chebet L., Eldoret</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter">
+        <h2>Join Our Fashion Tribe</h2>
+        <p>Subscribe for exclusive offers and updates on Kenyan-inspired fashion!</p>
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+    </section>
+
+    <footer>
+        <p>Copyright © 2025 Fashion Store Kenya. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
